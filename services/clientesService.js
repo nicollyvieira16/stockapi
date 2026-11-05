@@ -1,10 +1,9 @@
-// services/clientesService.js
-// Mesma responsabilidade dos outros services: só SQL, nada de req/res aqui.
+
 
 import pool from '../config/db.js';
 import { montarAtualizacao } from '../utils/montarAtualizacao.js';
 
-// Colunas que o PATCH pode alterar (whitelist). id nunca entra aqui.
+
 const CAMPOS_ATUALIZAVEIS = ['nome', 'email', 'telefone'];
 
 export async function criar(cliente) {
@@ -28,9 +27,7 @@ export async function buscarPorId(id) {
   return linhas[0];
 }
 
-// UPDATE parcial (PATCH): só os campos enviados são alterados.
-// Para APAGAR o e-mail ou o telefone, envie o campo com valor null.
-// O SQL é montado conforme o corpo (veja utils/montarAtualizacao.js).
+
 export async function atualizar(id, campos) {
   const { setClause, valores } = montarAtualizacao(campos, CAMPOS_ATUALIZAVEIS);
 

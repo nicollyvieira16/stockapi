@@ -1,7 +1,3 @@
-// routes/itensPedidoRoutes.js
-// O POST valida as duas chaves estrangeiras; o PATCH valida só o que pode
-// mudar (quantidade e/ou preco_unitario).
-// O caminho usa underscore (/itens_pedido), igual ao nome da tabela.
 
 import express from 'express';
 import * as controller from '../controllers/itensPedidoController.js';

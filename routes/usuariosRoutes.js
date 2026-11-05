@@ -1,6 +1,4 @@
-// routes/usuariosRoutes.js
-// Rotas públicas de autenticação: não usam o middleware `autenticar`,
-// porque é justamente aqui que o usuário consegue o token.
+
 
 import express from 'express';
 import * as controller from '../controllers/usuariosController.js';

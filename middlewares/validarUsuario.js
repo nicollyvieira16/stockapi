@@ -1,17 +1,15 @@
-// middlewares/validarUsuario.js
-// Dois middlewares: um para o registro, outro para o login.
+
 
 import { responderValidacao } from '../utils/respostasErro.js';
 
-const NOME_MAX = 100;   // usuarios.nome  VARCHAR(100)
-const EMAIL_MAX = 120;  // usuarios.email VARCHAR(120)
-const SENHA_MIN = 6;    // mínimo simples, só para o exercício. Num sistema real as regras são mais rígidas.
-const SENHA_MAX = 72;   // o bcrypt só considera os 72 primeiros caracteres
+const NOME_MAX = 100;
+const EMAIL_MAX = 120;
+const SENHA_MIN = 6;
+const SENHA_MAX = 72;
 
-// Verificação simples de e-mail (algo@algo.algo, sem espaços).
 const FORMATO_EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-// POST /usuarios/registro — nome, email e senha obrigatórios.
+
 export function validarRegistro(req, res, next) {
   const { nome, email, senha } = req.body;
   const erros = [];
@@ -36,9 +34,6 @@ export function validarRegistro(req, res, next) {
   next();
 }
 
-// POST /usuarios/login — só email e senha, ambos texto.
-// Aqui NÃO conferimos formato nem tamanho: se estiver errado, o login
-// simplesmente falha com 401, sem revelar nada sobre o que é válido.
 export function validarLogin(req, res, next) {
   const { email, senha } = req.body;
   const erros = [];

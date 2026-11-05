@@ -1,18 +1,4 @@
--- database/schema.sql
--- StockAPI — Desenvolvimento Back-end II
---
--- Como executar (no terminal, dentro da pasta do projeto):
---     mysql -u root -p < database/schema.sql
--- ou abra este arquivo no MySQL Workbench e execute tudo.
---
--- "IF NOT EXISTS" permite rodar o script mais de uma vez sem erro: se a
--- tabela já existe, o MySQL simplesmente a mantém (e os dados também).
---
--- A ORDEM das tabelas importa: uma tabela com FOREIGN KEY só pode ser criada
--- DEPOIS da tabela que ela referencia.
---
---   categorias ──< produtos >──< itens_pedido >── pedidos >── clientes
---   usuarios (independente: só serve para login)
+
 
 CREATE DATABASE IF NOT EXISTS stockapi;
 USE stockapi;

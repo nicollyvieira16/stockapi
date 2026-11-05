@@ -1,14 +1,7 @@
-// middlewares/validarPedido.js
-// Dois middlewares porque criar e atualizar pedem coisas diferentes:
-//   • validarPedido            → POST: cliente_id obrigatório; status opcional
-//   • validarAtualizacaoPedido → PUT:  status obrigatório
-//
-// Pedido usa PUT (e não PATCH) porque o ÚNICO campo que pode mudar é o status:
-// também não existe "atualização parcial" aqui.
 
 import { responderValidacao } from '../utils/respostasErro.js';
 
-const STATUS_MAX = 20; // pedidos.status VARCHAR(20)
+const STATUS_MAX = 20;
 
 function erroStatus(status) {
   if (typeof status !== 'string' || !status.trim()) return 'status deve ser um texto não vazio';
@@ -16,7 +9,7 @@ function erroStatus(status) {
   return null;
 }
 
-// POST /pedidos
+
 export function validarPedido(req, res, next) {
   const { cliente_id, status } = req.body;
   const erros = [];
@@ -27,14 +20,12 @@ export function validarPedido(req, res, next) {
     erros.push('cliente_id deve ser um número inteiro');
   }
 
-  // status é opcional na criação (o padrão "pendente" é definido no service).
   if (status !== undefined && erroStatus(status)) erros.push(erroStatus(status));
 
   if (erros.length > 0) return responderValidacao(res, erros);
   next();
 }
 
-// PUT /pedidos/:id
 export function validarAtualizacaoPedido(req, res, next) {
   const { status } = req.body;
   const erros = [];

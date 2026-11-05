@@ -1,13 +1,7 @@
-// middlewares/validarItemPedido.js
-//   • validarItemPedido            → POST:  as 2 FKs + quantidade + preço, tudo obrigatório
-//   • validarAtualizacaoItemPedido → PATCH: só quantidade e/ou preco_unitario, pelo menos um
-//
-// pedido_id e produto_id NÃO podem ser alterados depois de criados (para
-// trocar o produto de um item, apague o item e crie outro).
 
 import { responderValidacao } from '../utils/respostasErro.js';
 
-const PRECO_MAX = 99999999.99; // itens_pedido.preco_unitario DECIMAL(10,2)
+const PRECO_MAX = 99999999.99;
 
 const CAMPOS_ATUALIZAVEIS_ITEM = ['quantidade', 'preco_unitario'];
 
@@ -28,7 +22,7 @@ function erroPreco(p) {
   return null;
 }
 
-// POST /itens_pedido
+
 export function validarItemPedido(req, res, next) {
   const { pedido_id, produto_id, quantidade, preco_unitario } = req.body;
   const erros = [];
@@ -49,7 +43,7 @@ export function validarItemPedido(req, res, next) {
   next();
 }
 
-// PATCH /itens_pedido/:id
+
 export function validarAtualizacaoItemPedido(req, res, next) {
   const { quantidade, preco_unitario } = req.body;
   const erros = [];

@@ -1,22 +1,13 @@
-// middlewares/validarCliente.js
-// clientes não tem chave estrangeira, então a validação é simples.
-//   • validarCliente           → POST  (criar): só nome é obrigatório
-//   • validarAtualizacaoCliente → PATCH (atualizar): nada é obrigatório sozinho,
-//                                 mas o que vier precisa estar certo
-//
-// email e telefone são opcionais e aceitam null (para apagar o valor).
 
 import { responderValidacao } from '../utils/respostasErro.js';
 
-// Limites do banco (veja database/schema.sql)
-const NOME_MAX = 100;     // clientes.nome     VARCHAR(100)
-const EMAIL_MAX = 120;    // clientes.email    VARCHAR(120)
-const TELEFONE_MAX = 20;  // clientes.telefone VARCHAR(20)
+
+const NOME_MAX = 100;    
+const EMAIL_MAX = 120;    
+const TELEFONE_MAX = 20;  
 
 const CAMPOS_CLIENTE = ['nome', 'email', 'telefone'];
 
-// Verificação SIMPLES de e-mail: algo@algo.algo, sem espaços. Não pretende
-// cobrir todos os casos da especificação de e-mail — só barrar o óbvio.
 const FORMATO_EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 function erroNome(nome) {
@@ -52,7 +43,7 @@ export function validarCliente(req, res, next) {
   next();
 }
 
-// PATCH /clientes/:id — pelo menos um campo, cada um com o tipo certo.
+
 export function validarAtualizacaoCliente(req, res, next) {
   const { nome, email, telefone } = req.body;
   const erros = [];

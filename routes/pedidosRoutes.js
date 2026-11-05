@@ -1,7 +1,3 @@
-// routes/pedidosRoutes.js
-// Atenção: o POST e o PUT usam validações DIFERENTES.
-//   POST → validarPedido            (exige cliente_id)
-//   PUT  → validarAtualizacaoPedido (exige status)
 
 import express from 'express';
 import * as controller from '../controllers/pedidosController.js';
